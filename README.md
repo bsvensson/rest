@@ -1,37 +1,24 @@
-## Welcome to GitHub Pages
+# Run Every Street and Trail (REST)
 
-You can use the [editor on GitHub](https://github.com/bsvensson/rest/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## Getting the streets dataset
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+1. At https://overpass-turbo.eu/#, run the following command:
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+[out:json][timeout:500];
+{{geocodeArea:Redlands}}->.searchArea;
+(
+  way["highway"~"secondary|secondary_link|tertiary|residential"]
+     ["access"!="no"]["access"!="private"](area.searchArea);
+);
+out body;
+>;
+out skel qt;
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Then use `Export -> download/copy as GeoJSON` to save the 1,969 lines to a GeoJSON file.
 
-### Jekyll Themes
+2. In ArcGIS Online, import it to a hosted feature service.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/bsvensson/rest/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+`Add item` -> `From your computer`
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
