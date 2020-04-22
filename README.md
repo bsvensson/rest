@@ -11,11 +11,12 @@
 {{geocodeArea:Redlands}}->.searchArea;
 (
   way["highway"]
-  	 ["highway"!~"motorway|motorway_link|rest_area|platform|services"]
+     ["highway"!~"motorway|motorway_link|rest_area|platform|services"]
      ["foot"!~"no|private"]
      ["access"!~"no|private"]
-  	 ["service"!~"parking_aisle|driveway"]
- 	   ["footway"!~"."]
+     ["service"!~"parking_aisle|driveway"]
+     ["footway"!~"crossing|sidewalk"]
+     ["area"!~"yes"]     
      (area.searchArea);
      // or specify area by coordinates
      // (34.004, -117.278, 34.101, -117.051);
